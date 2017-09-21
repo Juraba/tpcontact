@@ -3,17 +3,13 @@ package LPS2IMA.Rabault.Contact;
 
 public class ContactService {
 	
-	private static IContactDAO dao;
+	private IContactDAO dao = new ContactDAO();
 	
-	public static void main(String[] args) {
-		
-	}
-	
-	public static void creerContact(String nom, String telephone) {
+	public void creerContact(String nom, String telephone) {
 		if(nom != null  &&  telephone != null) {
 			if(nom != "" && telephone != "" && nom.length() >= 3 && nom.length() <= 40) {
-				if(dao == null) {
-					dao = new ContactDAO();
+				if(dao.isContactExist(nom)) {
+					throw new IllegalStateException("Contact existe déjà");
 				}
 				Contact c = new Contact(nom, telephone);
 				dao.creerContact(c);
@@ -29,7 +25,7 @@ public class ContactService {
 		}
 	}
 	
-	public static void supprimerContact(Contact c) {
+	public void supprimerContact(Contact c) {
 		if(dao == null) {
 			dao = new ContactDAO();
 		}

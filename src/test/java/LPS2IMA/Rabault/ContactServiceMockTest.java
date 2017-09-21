@@ -22,7 +22,7 @@ public class ContactServiceMockTest extends MockTest{
 	private IContactDAO dao;
 	
 	@Test
-	public void testCreerContactErr() throws IllegalStateException {
+	public void testCreerContactValide() throws IllegalStateException {
 		//Phase d'enregistrement
 		String nom = "ContactOk";
 		EasyMock.expect(dao.isContactExist(nom)).andReturn(false);

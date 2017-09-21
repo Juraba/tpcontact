@@ -54,6 +54,7 @@ public class ContactDAO implements IContactDAO{
 		
 		if(!bool) {
 			System.out.println("Contact non existant");
+			throw new IllegalStateException("Contact non existant");
 		}
 		return c; 
 	}
